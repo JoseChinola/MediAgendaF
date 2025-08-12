@@ -10,5 +10,10 @@ import { ThemeService } from '../../core/services/theme.service';
   styleUrl: './header.css'
 })
 export class Header {
-  constructor(public themeService: ThemeService) {}
+  selectedIcon = 1;
+  constructor(public themeService: ThemeService) { }
+
+  toggleSelection(num: number) {
+    this.selectedIcon = num;
+  }
 }
