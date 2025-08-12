@@ -4,6 +4,10 @@ import { Doctor } from './components/doctor/doctor';
 import { Layout } from './layout/layout/layout';
 import { Reception } from './components/Reception/Reception';
 import { Dashboard } from './components/dashboard/dashboard';
+import { Security } from './components/security/security';
+import { Permission } from './components/security/permission/permission';
+import { Roles } from './components/security/roles/roles';
+import { Users } from './components/security/users/users';
 
 export const routes: Routes = [
     {
@@ -13,7 +17,7 @@ export const routes: Routes = [
             {
                 path: "",
                 component: Reception,
-                data: { breadcrumb: 'Reception' }                
+                data: { breadcrumb: 'Reception' }
 
             },
             {
@@ -24,7 +28,7 @@ export const routes: Routes = [
             {
                 path: "patient",
                 component: Patient,
-                data: { breadcrumb: 'Patient' }                
+                data: { breadcrumb: 'Patient' }
             },
             {
                 path: "doctor",
@@ -33,10 +37,24 @@ export const routes: Routes = [
             },
             {
                 path: "security",
-                component: Doctor,
+                component: Security,
                 data: { breadcrumb: 'Security' },
                 children: [
-
+                    {
+                        path: "permisos",
+                        component: Permission,
+                        data: { breadcrumb: 'Permisos' }
+                    },
+                    {
+                        path: "roles",
+                        component: Roles,
+                        data: { breadcrumb: 'Roles' }
+                    },
+                    {
+                        path: "users",
+                        component: Users,
+                        data: { breadcrumb: 'Usuarios' }
+                    },
                 ]
             }
         ]
