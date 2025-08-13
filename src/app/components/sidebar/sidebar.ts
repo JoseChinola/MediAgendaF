@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { MenuItem } from '../../core/models/menuItem.model';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Footer } from "../footer/footer";
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive, Footer],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css'
 })
@@ -24,7 +25,7 @@ export class Sidebar {
         {
           label: 'Reception',
           icon: 'fas fa-user',
-          to: '/'
+          to: '/reception'
         },
         {
           label: 'Patient',

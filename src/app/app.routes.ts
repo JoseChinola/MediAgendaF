@@ -8,14 +8,27 @@ import { Security } from './components/security/security';
 import { Permission } from './components/security/permission/permission';
 import { Roles } from './components/security/roles/roles';
 import { Users } from './components/security/users/users';
+import { Profile } from './components/profile/profile';
+import { Home } from './components/home/home';
+import { Login } from './auth/login/login';
+import { Register } from './auth/register/register';
+import { authGuard } from './core/guards/auth-guard';
+
 
 export const routes: Routes = [
     {
         path: "",
+        component: Home,
+        pathMatch: 'full'
+    },
+    {
+        path: "",
         component: Layout,
+        canActivate: [authGuard],
+        data: { breadcrumb: 'Home' },
         children: [
             {
-                path: "",
+                path: "reception",
                 component: Reception,
                 data: { breadcrumb: 'Reception' }
 
@@ -34,6 +47,11 @@ export const routes: Routes = [
                 path: "doctor",
                 component: Doctor,
                 data: { breadcrumb: 'Doctor' }
+            },
+            {
+                path: "profile",
+                component: Profile,
+                data: { breadcrumb: 'Perfil' }
             },
             {
                 path: "security",
@@ -56,7 +74,17 @@ export const routes: Routes = [
                         data: { breadcrumb: 'Usuarios' }
                     },
                 ]
-            }
+            },
+
         ]
-    }
+    },
+    {
+        path: "login",
+        component: Login
+    },
+    {
+        path: "register",
+        component: Register
+    },
+    { path: "**", redirectTo: "" }
 ];

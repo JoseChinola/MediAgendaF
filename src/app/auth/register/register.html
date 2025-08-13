@@ -1,0 +1,99 @@
+<div
+    class="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 via-white to-blue-50 font-sans px-4">
+
+    <!-- Contenedor principal -->
+    <div class="w-full max-w-lg bg-white rounded-2xl shadow-2xl p-6 sm:p-8 relative overflow-hidden">
+
+        <!-- Fondos difuminados decorativos -->
+        <div
+            class="absolute -top-16 -left-16 w-56 h-56 sm:w-72 sm:h-72 bg-gradient-to-tr from-blue-200 to-white blur-3xl rounded-full">
+        </div>
+        <div
+            class="absolute -bottom-16 -right-16 w-56 h-56 sm:w-72 sm:h-72 bg-gradient-to-bl from-blue-100 to-white blur-3xl rounded-full">
+        </div>
+
+        <!-- Logo -->
+        <div class="flex justify-center mb-2 relative z-10">
+            <img src="logo.png" alt="Logo" class="h-14 w-14 sm:h-16 sm:w-16 object-cover rounded-full shadow-md">
+        </div>
+
+        <!-- Título -->
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-800 text-center mb-6 relative z-10 drop-shadow-md">
+            Crear cuenta
+        </h1>
+
+        <!-- Formulario de registro -->
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4 relative z-10">
+
+            <!-- Nombres -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <div class="flex-1">
+                    <label class="block text-gray-700 font-medium mb-1" for="firstName">Nombre</label>
+                    <input type="text" id="firstName" name="firstName" formControlName="firstName"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300"
+                        placeholder="Ej: Juan" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-gray-700 font-medium mb-1" for="lastName">Apellido</label>
+                    <input type="text" id="lastName" name="lastName" formControlName="lastName"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300"
+                        placeholder="Ej: Pérez" required>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="block text-gray-700 font-medium mb-1" for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" formControlName="email"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300"
+                    placeholder="ejemplo@dominio.com" required>
+            </div>
+
+            <!-- Teléfono -->
+            <div>
+                <label class="block text-gray-700 font-medium mb-1" for="phoneNumber">Teléfono</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" formControlName="phoneNumber"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300"
+                    placeholder="+34 612 345 678" required>
+            </div>
+
+            <!-- Contraseña -->
+            <div>
+                <label class="block text-gray-700 font-medium mb-1" for="password">Contraseña</label>
+                <input type="password" id="password" name="password" formControlName="password"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300"
+                    placeholder="Mínimo 8 caracteres" required>
+            </div>
+
+            <!-- Confirmar Contraseña -->
+            <div>
+                <label for="confirmPassword" class="block text-gray-700 font-medium mb-1">Confirmar contraseña</label>
+                <input type="password" formControlName="confirmPassword"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300"
+                    placeholder="Repite la contraseña">
+                <div *ngIf="registerForm.errors?.['mismatch'] && (registerForm.get('confirmPassword')?.touched || registerForm.get('password')?.touched)"
+                    class="text-red-500 text-sm mt-1">
+                    Las contraseñas no coinciden
+                </div>
+            </div>
+
+
+            <!-- Botón Registrar -->
+            <button type="submit" class="mt-4 w-full py-3 
+                bg-gradient-to-r 
+                from-blue-600 to-blue-500 
+                text-white rounded-lg font-semibold shadow-lg
+                cursor-pointer 
+                hover:from-blue-700 hover:to-blue-600 transition-all duration-300">
+                Registrarse
+            </button>
+        </form>
+
+        <!-- Login link -->
+        <p class="text-center text-gray-500 text-sm mt-6 relative z-10">
+            ¿Ya tienes cuenta?
+            <a routerLink="/login" class="text-blue-600 font-semibold hover:underline">Inicia sesión</a>
+        </p>
+
+    </div>
+</div>
