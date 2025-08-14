@@ -6,6 +6,7 @@ import { AppointmentsComponent } from './components/appointments/appointments';
 import { profile } from './components/setting/profile/profile';
 import { Setting } from './components/setting/setting';
 import { ChangePassword } from './components/setting/security/changePassword';
+import { CreateAppointment } from './components/create-appointment/create-appointment';
 
 const routes: Routes = [
     {
@@ -19,6 +20,12 @@ const routes: Routes = [
         component: AppointmentsComponent,
         canActivate: [authGuard],
         data: { breadcrumb: 'Citas' }
+    },
+    {
+        path: "create",
+        component: CreateAppointment,
+        canActivate: [authGuard],
+        data: { breadcrumb: 'Crear Cita' }
     },
     {
         path: "setting",

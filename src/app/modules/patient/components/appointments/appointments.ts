@@ -40,7 +40,7 @@ export class AppointmentsComponent implements OnInit {
       },
       error: (err) => console.error('Error fetching appointments:', err)
     });
-  }
+  }  
 
   cancelAppointment(appointment: Appointments) {
     if (!appointment.id) {

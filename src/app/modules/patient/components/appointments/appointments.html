@@ -1,7 +1,7 @@
 <div class="bg-gray-50 flex flex-col p-6">
     <h2 class="text-xl font-semibold text-gray-800 mb-4">Historial de Citas</h2>
 
-    <div class="overflow-x-auto min-h-screen">
+    <div class="overflow-x-auto">
         <table class="min-w-full bg-white rounded-lg shadow">
             <thead class="bg-gray-100 text-gray-600 uppercase text-sm">
                 <tr>
@@ -46,8 +46,7 @@
     </div>
 
     <!-- Paginación -->
-    <!-- Paginación con íconos -->
-    <div class="flex justify-center items-center gap-2 mt-4">
+    <div class="flex justify-center items-center gap-2 mt-8">
         <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1"
             class="flex items-center px-3 py-1 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50">
             <!-- Icono flecha izquierda -->

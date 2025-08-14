@@ -4,6 +4,7 @@ import { PatientService } from '../../services/patient.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../../core/services/auth.service';
 import { AppointmentsComponent } from "../appointments/appointments";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class PatientDashboard {
 
 
   constructor(private patientService: PatientService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     const userId = this.authService.getUserId();
@@ -35,5 +37,5 @@ export class PatientDashboard {
   }
 
 
-  newAppointment() { console.log('Agendar nueva cita'); }
+  newAppointment() { this.router.navigate(['/app/patient/create']); }
 }

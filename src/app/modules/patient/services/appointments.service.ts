@@ -16,6 +16,10 @@ export class AppointmentsService {
     return this.http.get<Appointments[]>(`${environment.apiUrl}${this.baseUrl}/${patientId}`);
   }
 
+  createAppointment(appointment: Appointments): Observable<Appointments> {
+    return this.http.post<Appointments>(`${environment.apiUrl}${this.baseUrl}`, appointment);
+  }
+
   // Cancelar una cita por su id
   cancelAppointment(appointmentId: string): Observable<void> {
     return this.http.delete<void>(`${environment.apiUrl}/appointment/${appointmentId}`);
