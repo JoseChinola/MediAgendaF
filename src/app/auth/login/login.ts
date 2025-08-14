@@ -28,32 +28,13 @@ export class Login {
       const { email, password } = this.loginForm.value;
       this.authService.login({ email, password }).subscribe({
         next: (res: any) => {
+          this.router.navigate(['/']);
           this.loginForm.reset();
-
-
-          //redireccion segun rol
-          switch (res.role) {
-            case 'Admin':
-              this.router.navigate(['/dashboard']);
-              break;
-            case 'Doctor':
-              this.router.navigate(['/doctor']);
-              break;
-            case 'Patient':
-              this.router.navigate(['/patient']);
-              break;
-            case 'Reception':
-              this.router.navigate(['/reception']);
-              break;
-            default:
-              this.router.navigate(['/']);
-              break;
-          }
         },
         error: (err) => {
           console.log(err);
         },
-      })
+      });
     } else {
       this.loginForm.markAllAsTouched();
     }

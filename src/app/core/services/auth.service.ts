@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
-import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, tap } from "rxjs";
+import { User } from "../../shared/models/user.model";
+import { environment } from "../../../environments/environment";
+import { jwtDecode } from 'jwt-decode';
 
 interface LoginResponse {
     token: string;
@@ -9,13 +11,18 @@ interface LoginResponse {
     role: string;
 }
 
+interface JwtPayload {
+    nameid: string;
+    role: string;
+    fullName: string;
+}
+
 @Injectable({
     providedIn: "root"
 })
 
-
 export class AuthService {
-    private apiURL = 'https://localhost:7283/api/User';
+    private apiURL = `${environment.apiUrl}/User`;
 
 
 
@@ -68,6 +75,23 @@ export class AuthService {
         return user ? user.fullName : null;
     }
 
+    decodeToken(): JwtPayload | null {
+        const token = this.getToken();
+        if (!token) return null;
 
+        try {
+            const decoded: JwtPayload = jwtDecode(token);
+            return decoded;
+        } catch (error) {
+            console.error('Error decoding token:', error);
+            return null;
+        }
+    }
+
+    // Ejemplo de uso:
+    getUserId(): string | null {
+        const decoded = this.decodeToken();
+        return decoded ? decoded.nameid : null;
+    }
 
 }

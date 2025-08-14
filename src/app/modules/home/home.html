@@ -1,0 +1,221 @@
+<div class="min-h-screen flex flex-col bg-gradient-to-b from-blue-50 via-white to-blue-50 font-sans">
+
+    <!-- HEADER -->
+    <header class="w-full bg-white/80 backdrop-blur-md shadow-md fixed z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+            <div class="flex items-center gap-3">
+                <div class="h-10 w-10">
+                    <img src="logo.png" alt="logo" class="h-full w-full object-cover rounded-full" />
+                </div>
+                <span class="text-xl md:text-2xl font-extrabold text-blue-600">MediAgenda</span>
+            </div>
+            <div class="flex gap-3">
+                <ng-container *ngIf="!isLoggedIn; else loggedLinks">
+                    <a routerLink="/login"
+                        class="px-4 py-2 text-blue-600 font-medium hover:underline transition">Iniciar
+                        sesión</a>
+                    <a routerLink="/register"
+                        class="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg hover:from-blue-700 hover:to-blue-600 shadow-lg transition-all duration-300">
+                        Registrarse
+                    </a>
+                </ng-container>
+
+                <ng-template #loggedLinks>
+                    <a routerLink="/app" class="px-4 py-2 text-blue-600 font-medium hover:underline transition">
+                        Ir a mi panel
+                    </a>
+                    <button (click)="logout()"
+                        class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+                        Cerrar sesión
+                    </button>
+                </ng-template>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section
+        class="flex-1 flex flex-col-reverse md:flex-row items-center justify-center max-w-7xl mx-auto mt-4 px-6 py-24 gap-8 bg-gradient-to-r from-blue-50 via-white to-blue-50 rounded-xl">
+        <!-- Texto Hero -->
+        <div class="flex-1 text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight mb-4 drop-shadow-lg">
+                Agenda tus <span class="text-blue-600">citas médicas</span> de forma fácil y rápida
+            </h1>
+            <p class="text-gray-600 mb-6 text-lg md:text-xl">
+                Reserva, confirma y administra tus citas médicas desde cualquier lugar, de manera segura y rápida.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <ng-container *ngIf="!isLoggedIn; else loggedHero">
+
+                    <a routerLink="/register"
+                        class="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg font-semibold shadow-lg transform transition hover:scale-105 hover:from-blue-700 hover:to-blue-600 duration-300">
+                        ¡Comienza ahora!
+                    </a>
+                    <a routerLink="/login"
+                        class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg shadow-sm hover:bg-blue-50 hover:scale-105 transition transform duration-300">
+                        Ya tengo cuenta
+                    </a>
+                </ng-container>
+                <ng-template #loggedHero>
+                    <a routerLink="/app"
+                        class="px-6 py-3 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg font-semibold shadow-lg transform transition hover:scale-105 hover:from-green-700 hover:to-green-600 duration-300">
+                        Ir a mi panel
+                    </a>
+                </ng-template>
+            </div>
+        </div>
+
+        <!-- Imagen Hero -->
+        <div class="relative flex justify-center">
+            <div class="absolute -top-8 -left-8 w-72 h-72 bg-gradient-to-tr from-blue-200 to-white  blur-3xl">
+            </div>
+            <img src="doctor.png" alt="Doctor ilustración" class="relative w-full object-contain rounded-xl shadow-2xl">
+        </div>
+    </section>
+
+
+    <!-- CÓMO FUNCIONA -->
+    <section class="py-12 bg-blue-50">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8 drop-shadow-sm">Cómo funciona</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="p-6 bg-white rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl hover:-translate-y-2">
+                    <div class="text-4xl mb-4 animate-bounce">📝</div>
+                    <h3 class="font-semibold text-xl mb-2">Regístrate</h3>
+                    <p class="text-gray-600">Crea tu cuenta de forma rápida y segura para empezar a agendar tus citas.
+                    </p>
+                </div>
+                <div
+                    class="p-6 bg-white rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl hover:-translate-y-2">
+                    <div class="text-4xl mb-4 animate-bounce">📅</div>
+                    <h3 class="font-semibold text-xl mb-2">Agenda tu cita</h3>
+                    <p class="text-gray-600">Selecciona el doctor, día y hora según tu disponibilidad.</p>
+                </div>
+                <div
+                    class="p-6 bg-white rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl hover:-translate-y-2">
+                    <div class="text-4xl mb-4 animate-bounce">✅</div>
+                    <h3 class="font-semibold text-xl mb-2">Confirma y recibe alertas</h3>
+                    <p class="text-gray-600">Recibe notificaciones para no olvidar tus citas y mantener tu historial
+                        actualizado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8 drop-shadow-sm">BENEFICIOS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div
+                    class="p-6 rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl hover:-translate-y-2">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Reservas rápidas</h3>
+                    <p class="text-gray-600">Agenda tus citas médicas en segundos sin llamadas ni esperas.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl hover:-translate-y-2">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Recordatorios automáticos</h3>
+                    <p class="text-gray-600">Recibe alertas antes de cada cita para no olvidarlas.</p>
+                </div>
+                <div
+                    class="p-6 rounded-xl shadow-lg transform transition hover:scale-105 hover:shadow-2xl hover:-translate-y-2">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Historial completo</h3>
+                    <p class="text-gray-600">Mantén un registro de todas tus citas y estados de manera segura.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="py-12 bg-blue-50">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8 drop-shadow-sm">Lo que dicen nuestros
+                usuarios</h2>
+
+            <div
+                class="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-blue-100 hover:scrollbar-thumb-blue-600 transition-colors">
+                <div
+                    class="min-w-[300px] p-6 bg-white rounded-xl shadow-lg border border-gray-100 snap-start hover:scale-105 transform transition hover:shadow-2xl hover:border-blue-200">
+                    <p class="text-gray-600 mb-4">“Gracias a este sistema puedo organizar todas mis citas sin estrés.
+                        ¡Muy recomendable!”</p>
+                    <h4 class="font-semibold text-gray-800">Juan Pérez</h4>
+                </div>
+                <div
+                    class="min-w-[300px] p-6 bg-white rounded-xl shadow-lg border border-gray-100 snap-start hover:scale-105 transform transition hover:shadow-2xl hover:border-blue-200">
+                    <p class="text-gray-600 mb-4">“La interfaz es muy fácil de usar y los recordatorios me ayudan
+                        mucho.”</p>
+                    <h4 class="font-semibold text-gray-800">Ana López</h4>
+                </div>
+                <div
+                    class="min-w-[300px] p-6 bg-white rounded-xl shadow-lg border border-gray-100 snap-start hover:scale-105 transform transition hover:shadow-2xl hover:border-blue-200">
+                    <p class="text-gray-600 mb-4">“Todo en un solo lugar: historial, citas y confirmaciones. Excelente.”
+                    </p>
+                    <h4 class="font-semibold text-gray-800">Carlos Ruiz</h4>
+                </div>
+                <div
+                    class="min-w-[300px] p-6 bg-white rounded-xl shadow-lg border border-gray-100 snap-start hover:scale-105 transform transition hover:shadow-2xl hover:border-blue-200">
+                    <p class="text-gray-600 mb-4">“Excelente atención y muy fácil de usar.”</p>
+                    <h4 class="font-semibold text-gray-800">Lucía Martínez</h4>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-10">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8 text-center drop-shadow-sm">Preguntas
+                frecuentes</h2>
+            <div class="space-y-4">
+                <details class="p-4 bg-white rounded-xl shadow cursor-pointer transition hover:shadow-lg">
+                    <summary class="font-semibold text-gray-800">¿Puedo cancelar mi cita?</summary>
+                    <p class="text-gray-600 mt-2">Sí, puedes cancelar o reprogramar tu cita desde tu panel de usuario.
+                    </p>
+                </details>
+                <details class="p-4 bg-white rounded-xl shadow cursor-pointer transition hover:shadow-lg">
+                    <summary class="font-semibold text-gray-800">¿Recibiré notificaciones?</summary>
+                    <p class="text-gray-600 mt-2">Sí, recibirás recordatorios por correo electrónico o notificación en
+                        la app.</p>
+                </details>
+                <details class="p-4 bg-white rounded-xl shadow cursor-pointer transition hover:shadow-lg">
+                    <summary class="font-semibold text-gray-800">¿Puedo ver mi historial?</summary>
+                    <p class="text-gray-600 mt-2">Sí, todas tus citas pasadas y presentes estarán disponibles en tu
+                        historial.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="py-12 bg-blue-600 text-white text-center">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4 drop-shadow-md">¡Comienza a agendar tus citas hoy!</h2>
+        <p class="mb-6 text-lg">Únete y disfruta de una experiencia rápida y confiable.</p>
+        <div class="flex justify-center gap-4">
+            <a routerLink="/register"
+                class="px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition shadow-lg">
+                Registrarse
+            </a>
+            <a routerLink="/login"
+                class="px-6 py-3 border border-white rounded-lg hover:bg-white hover:text-blue-600 transition shadow-lg">
+                Iniciar sesión
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-100 py-2 text-center text-gray-500 text-sm">
+        © {{ currentYear }} MediAgenda. Todos los derechos reservados.
+        <div class="flex items-center justify-center gap-2 mt-2">
+            <a href="https://github.com/JoseChinola" target="_blank" class="hover:text-gray-800 transition">
+                <!-- SVG GitHub -->
+            </a>
+            <a href="https://www.linkedin.com/in/renny-matos-b9a230246" target="_blank"
+                class="hover:text-blue-600 transition">
+                <!-- SVG LinkedIn -->
+            </a>
+        </div>
+    </footer>
+
+</div>

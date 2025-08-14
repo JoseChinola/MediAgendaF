@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { User } from '../../core/models/user.model';
 import { CommonModule } from '@angular/common';
+import { User } from '../../shared/models/user.model';
 
 @Component({
   selector: 'app-register',
