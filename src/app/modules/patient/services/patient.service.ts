@@ -12,4 +12,8 @@ export class PatientService {
   getMyPatient(userId: string) {
     return this.http.get<Patient>(`${environment.apiUrl}/Patient/${userId}`);
   }
+
+  updatePatient(userId: string, data: any) {
+    return this.http.put(`${environment.apiUrl}/Patient/${userId}`, data);
+  }
 }

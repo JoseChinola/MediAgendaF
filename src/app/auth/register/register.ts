@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { User } from '../../shared/models/user.model';
+import { AuthService } from '../../core/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,12 @@ import { User } from '../../shared/models/user.model';
 export class Register {
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -44,7 +51,17 @@ export class Register {
         password: this.registerForm.value.password,
         roleId: '58bd70cf-a46d-41c6-da45-08ddd5508254',
       };
-      console.log('Usuario registrado:', user);
+
+      this.authService.register(user).subscribe({
+        next: (res: any) => {
+          this.toastr.success('Registro exitoso', 'Éxito');
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          console.log(err);
+          this.toastr.error('Error al registrar', 'Error');
+        },
+      });
     } else {
       this.registerForm.markAllAsTouched();
     }

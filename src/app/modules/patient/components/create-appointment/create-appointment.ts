@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AppointmentsService } from '../../services/appointments.service';
 import { Router } from '@angular/router';
 import { Appointments } from '../../../../shared/models/appointment.model';
+import { Doctor } from '../../../../shared/models/doctor.model';
+import { AuthService } from '../../../../core/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-appointment',
@@ -13,10 +16,14 @@ import { Appointments } from '../../../../shared/models/appointment.model';
 })
 export class CreateAppointment {
   appointmentForm: FormGroup;
+  doctors: Doctor[] = [];
+  userId: string = '';
 
   constructor(
     private fb: FormBuilder,
     private appointmentsService: AppointmentsService,
+    private authService: AuthService,
+    private toastr: ToastrService,
     private router: Router
   ) {
     this.appointmentForm = this.fb.group({
@@ -27,6 +34,15 @@ export class CreateAppointment {
     });
   }
 
+  ngOnInit() {
+    this.userId = this.authService.getUserId() || '';
+    if (!this.userId) {
+      console.error('No user ID found');
+      return;
+    }
+    this.loadDoctors();
+  }
+
   Onsubmit() {
     if (this.appointmentForm.invalid) {
       this.appointmentForm.markAllAsTouched();
@@ -35,27 +51,38 @@ export class CreateAppointment {
 
     const formValue = this.appointmentForm.value;
 
-    // Combinar fecha y hora en un Date
-    const date = new Date(formValue.appointmentDate);
-    const [hours, minutes] = formValue.appointmentTime.split(':').map((v: string) => parseInt(v));
-    date.setHours(hours, minutes);
+    if (!formValue.doctor) {
+      alert('Por favor, seleccione un doctor.');
+      return;
+    }
 
-    // Convertir a string ISO
-    const appointmentDateString = date.toISOString();
+    // Construir fecha y hora sin conversión de zona horaria
+    const appointmentDateString = `${formValue.appointmentDate}T${formValue.appointmentTime}`;
 
-    const newAppointment: Appointments = {
-      doctor: formValue.doctor,
+    const newAppointment = {
+      doctorId: formValue.doctor,
+      patientId: this.userId,
       appointmentDate: appointmentDateString,
-      notes: formValue.notes || null,
-      status: 'Pendiente'
+      notes: formValue.notes || ''
     };
 
     this.appointmentsService.createAppointment(newAppointment).subscribe({
       next: () => {
-        alert('Cita creada correctamente');
+        this.toastr.success('Cita creada correctamente', 'Éxito');
         this.router.navigate(['/app/patient']);
       },
-      error: (err) => console.error('Error creando cita:', err)
+      error: (err) => {
+        console.error('Error creando cita:', err);
+        this.toastr.error('Error al crear cita', 'Error');
+      }
+    });
+  }
+
+  loadDoctors() {
+    this.appointmentsService.getAllDoctors().subscribe({
+      next: (data) => this.doctors = data,
+
+      error: (err) => console.error('Error cargando doctores:', err)
     });
   }
 }
