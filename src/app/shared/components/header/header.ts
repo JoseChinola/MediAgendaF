@@ -17,6 +17,7 @@ export class Header {
   selectedIcon = 1;
   fullName: string = '';
   initials: string = '';
+  currentRole: string = '';
 
   constructor(public themeService: ThemeService, private authService: AuthService, private router: Router) { }
 
@@ -25,6 +26,7 @@ export class Header {
     this.authService.currentUser$.subscribe(user => {
       this.fullName = user ? user.fullName : '';
       this.initials = this.fullName ? this.fullName.split(' ').map(n => n[0]).join('').toUpperCase() : '';
+      this.currentRole = user ? user.role.toLowerCase() : '';      
     })
   }
 

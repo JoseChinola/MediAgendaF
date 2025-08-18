@@ -11,8 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.html',
-  imports: [CommonModule, FormsModule, RescheduleAppointment, CancelAppointmentModal],
-  styleUrls: ['./appointments.css']
+  imports: [CommonModule, FormsModule, RescheduleAppointment, CancelAppointmentModal]
 })
 export class AppointmentsComponent implements OnInit {
   appointments: Appointments[] = [];

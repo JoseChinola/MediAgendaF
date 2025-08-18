@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AppointmentsService } from '../../services/appointments.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Appointments } from '../../../../shared/models/appointment.model';
 import { Doctor } from '../../../../shared/models/doctor.model';
 import { AuthService } from '../../../../core/services/auth.service';
@@ -10,9 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-appointment',
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './create-appointment.html',
-  styleUrl: './create-appointment.css'
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  templateUrl: './create-appointment.html'
 })
 export class CreateAppointment {
   appointmentForm: FormGroup;

@@ -1,9 +1,9 @@
-<div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+<div class="fixed inset-0 bg-black/60 bg-opacity-50 flex justify-center items-center">
     <div class="bg-white p-6 rounded-lg w-80 text-center">
         <h3 class="text-lg font-semibold mb-4">¿Está seguro de cancelar la cita?</h3>
-        <div class="flex justify-center gap-4">
-            <button (click)="confirm.emit()" class="px-4 py-2 bg-red-600 text-white rounded">Sí</button>
-            <button (click)="cancel.emit()" class="px-4 py-2 bg-gray-300 rounded">No</button>
+        <div class="flex justify-center gap-6">
+            <button (click)="confirm.emit()" class="px-6 cursor-pointer py-2 bg-red-600 text-white rounded-lg">Sí</button>
+            <button (click)="cancel.emit()" class="px-6 cursor-pointer py-2 bg-gray-300 rounded-lg">No</button>
         </div>
     </div>
 </div>

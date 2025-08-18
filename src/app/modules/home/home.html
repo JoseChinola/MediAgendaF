@@ -192,15 +192,25 @@
     <section class="py-12 bg-blue-600 text-white text-center">
         <h2 class="text-3xl md:text-4xl font-extrabold mb-4 drop-shadow-md">¡Comienza a agendar tus citas hoy!</h2>
         <p class="mb-6 text-lg">Únete y disfruta de una experiencia rápida y confiable.</p>
+
         <div class="flex justify-center gap-4">
-            <a routerLink="/register"
-                class="px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition shadow-lg">
-                Registrarse
-            </a>
-            <a routerLink="/login"
-                class="px-6 py-3 border border-white rounded-lg hover:bg-white hover:text-blue-600 transition shadow-lg">
-                Iniciar sesión
-            </a>
+            <ng-container *ngIf="!isLoggedIn; else CtaEnd">
+                <a routerLink="/register"
+                    class="px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition shadow-lg">
+                    Registrarse
+                </a>
+                <a routerLink="/login"
+                    class="px-6 py-3 border border-white rounded-lg hover:bg-white hover:text-blue-600 transition shadow-lg">
+                    Iniciar sesión
+                </a>
+            </ng-container>
+
+            <ng-template #CtaEnd>
+                <a routerLink="/app"
+                    class="px-6 py-3 text-center bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg font-semibold shadow-lg transform transition hover:scale-105 hover:from-green-700 hover:to-green-600 duration-300">
+                    Ir a mi panel
+                </a>
+            </ng-template>
         </div>
     </section>
 
