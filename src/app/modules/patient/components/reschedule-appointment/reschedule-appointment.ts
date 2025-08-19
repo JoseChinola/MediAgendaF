@@ -6,8 +6,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 @Component({
   selector: 'app-reschedule-appointment',
   imports: [FormsModule, ReactiveFormsModule],
-  templateUrl: './reschedule-appointment.html',
-  styleUrl: './reschedule-appointment.css'
+  templateUrl: './reschedule-appointment.html'
 })
 export class RescheduleAppointment {
   @Input() appointment!: Appointments;

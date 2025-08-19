@@ -9,8 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-profile',
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './profile.html',
-  styleUrl: './profile.css'
+  templateUrl: './profile.html'
 })
 export class profile {
   userId: string = '';

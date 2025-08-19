@@ -9,8 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-register',
   imports: [RouterLink, CommonModule, ReactiveFormsModule],
-  templateUrl: './register.html',
-  styleUrl: './register.css'
+  templateUrl: './register.html'
 })
 export class Register {
   registerForm!: FormGroup;

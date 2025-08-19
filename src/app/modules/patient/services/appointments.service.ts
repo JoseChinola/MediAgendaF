@@ -36,6 +36,12 @@ export class AppointmentsService {
     });
   }
 
+  getAvailableHours(doctorId: string, date: string): Observable<string[]> {
+    return this.http.get<string[]>(`${environment.apiUrl}${this.baseUrl}/available-hours/${doctorId}`, {
+      params: { date }
+    });
+  }
+
   getAllDoctors(): Observable<Doctor[]> {
     return this.http.get<Doctor[]>(`${environment.apiUrl}/doctor`);
   }

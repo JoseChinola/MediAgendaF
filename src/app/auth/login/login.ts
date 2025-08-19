@@ -8,8 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   imports: [RouterLink, ReactiveFormsModule, CommonModule],
-  templateUrl: './login.html',
-  styleUrl: './login.css'
+  templateUrl: './login.html'
 })
 export class Login {
   loginForm!: FormGroup;

@@ -102,7 +102,9 @@
     </app-reschedule-appointment>
 
     <!-- Modal de confirmación de cancelación -->
-    <app-cancel-appointment-modal *ngIf="showCancelModal" (confirm)="onConfirmCancel()"
+    <app-cancel-appointment-modal 
+    *ngIf="showCancelModal" 
+    (confirm)="onConfirmCancel()"
         (cancel)="showCancelModal = false">
     </app-cancel-appointment-modal>
 

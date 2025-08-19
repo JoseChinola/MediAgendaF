@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CreateAppointment {
   appointmentForm: FormGroup;
   doctors: Doctor[] = [];
+  availableHours: string[] = [];
   userId: string = '';
 
   constructor(
@@ -80,8 +81,21 @@ export class CreateAppointment {
   loadDoctors() {
     this.appointmentsService.getAllDoctors().subscribe({
       next: (data) => this.doctors = data,
-
       error: (err) => console.error('Error cargando doctores:', err)
     });
   }
+
+  onDoctorOrDateChange() {
+    const doctorId = this.appointmentForm.get('doctor')?.value;
+    const date = this.appointmentForm.get('appointmentDate')?.value;
+
+    if (doctorId && date) { 
+      this.appointmentsService.getAvailableHours(doctorId, date)
+      .subscribe(hours => {
+        this.availableHours = hours;
+        this.appointmentForm.get('appointmentTime')?.setValue('');
+      });      
+    }
+  }
+  
 }

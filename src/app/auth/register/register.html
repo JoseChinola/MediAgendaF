@@ -1,8 +1,8 @@
 <div
-    class="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 via-white to-blue-50 font-sans px-4">
+    class="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 via-white to-blue-50 font-sans px-4 py-4">
 
     <!-- Contenedor principal -->
-    <div class="w-full max-w-lg bg-white rounded-2xl shadow-2xl p-6 sm:p-8 relative overflow-hidden">
+    <div class="w-full max-w-lg bg-white rounded-2xl shadow-2xl px-6 py-3 relative overflow-hidden">
 
         <!-- Fondos difuminados decorativos -->
         <div
@@ -13,12 +13,12 @@
         </div>
 
         <!-- Logo -->
-        <div class="flex justify-center mb-2 relative z-10">
+        <div class="flex justify-center mb-1 relative z-10">
             <img src="logo.png" alt="Logo" class="h-14 w-14 sm:h-16 sm:w-16 object-cover rounded-full shadow-md">
         </div>
 
         <!-- Título -->
-        <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-800 text-center mb-6 relative z-10 drop-shadow-md">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-800 text-center mb-4 relative z-10 drop-shadow-md">
             Crear cuenta
             <p class="text-center text-gray-500 text-sm mt-1 z-10 relative">
                 Volver a
@@ -27,7 +27,7 @@
         </h1>
 
         <!-- Formulario de registro -->
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4 relative z-10">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-2 relative z-10">
 
             <!-- Nombres -->
             <div class="flex flex-col sm:flex-row gap-4">
@@ -61,29 +61,32 @@
                     placeholder="+34 612 345 678" required>
             </div>
 
-            <!-- Contraseña -->
-            <div>
-                <label class="block text-gray-700 font-medium mb-1" for="password">Contraseña</label>
-                <input type="password" id="password" name="password" formControlName="password"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300"
-                    placeholder="Mínimo 8 caracteres" required>
-            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
 
-            <!-- Confirmar Contraseña -->
-            <div>
-                <label for="confirmPassword" class="block text-gray-700 font-medium mb-1">Confirmar contraseña</label>
-                <input type="password" formControlName="confirmPassword"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300"
-                    placeholder="Repite la contraseña">
-                <div *ngIf="registerForm.errors?.['mismatch'] && (registerForm.get('confirmPassword')?.touched || registerForm.get('password')?.touched)"
-                    class="text-red-500 text-sm mt-1">
-                    Las contraseñas no coinciden
+                <!-- Contraseña -->
+                <div class="flex-1">
+                    <label class="block text-gray-700 font-medium mb-1" for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" formControlName="password"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300"
+                        placeholder="Mínimo 8 caracteres" required>
                 </div>
+
+                <!-- Confirmar Contraseña -->
+                <div class="flex-1">
+                    <label for="confirmPassword" class="block text-gray-700 font-medium mb-1">Confirmar
+                        contraseña</label>
+                    <input type="password" formControlName="confirmPassword"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none transition duration-300"
+                        placeholder="Repite la contraseña">
+                    <div *ngIf="registerForm.errors?.['mismatch'] && (registerForm.get('confirmPassword')?.touched || registerForm.get('password')?.touched)"
+                        class="text-red-500 text-sm mt-1">
+                        Las contraseñas no coinciden
+                    </div>
+                </div>
+
             </div>
-
-
             <!-- Botón Registrar -->
-            <button type="submit" class="mt-4 w-full py-3 
+            <button type="submit" class="mt-2 w-full py-3 
                 bg-gradient-to-r 
                 from-blue-600 to-blue-500 
                 text-white rounded-lg font-semibold shadow-lg
@@ -94,7 +97,7 @@
         </form>
 
         <!-- Login link -->
-        <p class="text-center text-gray-500 text-sm mt-6 relative z-10">
+        <p class="text-center text-gray-500 text-sm mt-3 relative z-10">
             ¿Ya tienes cuenta?
             <a routerLink="/login" class="text-blue-600 font-semibold hover:underline">Inicia sesión</a>
         </p>

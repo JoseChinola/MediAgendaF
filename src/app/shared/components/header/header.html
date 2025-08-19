@@ -1,7 +1,7 @@
 <header class="h-16 bg-white border-b-gray flex items-center px-6 shadow-xl w-full rounded-sm">
     <app-breadcrumb class="flex-grow"></app-breadcrumb>
-    <div class="flex items-center justify-between gap-4 px-4">
 
+    <div class="flex items-center justify-between gap-4 px-4">
 
         <div class="relative flex items-center border rounded-2xl h-9 select-none">
 
@@ -13,7 +13,7 @@
             <!-- Botón 1 -->
             <button (click)="toggleSelection(1)"
                 class="relative flex items-center justify-center w-9 h-9 rounded-full text-black cursor-pointer"
-                [class.text-white]="selectedIcon === 1">
+                [ngClass]="{'text-sky-200': selectedIcon === 1, 'text-black': selectedIcon !== 1}">
                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
                     <path
@@ -24,7 +24,7 @@
             <!-- Botón 2 -->
             <button (click)="toggleSelection(2)"
                 class="relative flex items-center justify-center w-9 h-9 rounded-full text-black cursor-pointer"
-                [class.text-white]="selectedIcon === 2">
+                [ngClass]="{'text-yellow-500': selectedIcon === 2, 'text-black': selectedIcon !== 2}">
                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
                     <path
