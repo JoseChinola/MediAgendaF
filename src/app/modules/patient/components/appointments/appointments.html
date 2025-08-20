@@ -1,10 +1,12 @@
-<div class="bg-gray-50 flex flex-col p-6">
+<div class="bg-gray-50 dark:bg-gray-900 rounded-xl flex flex-col p-8 transition-colors max-h-screen ">
     <div class="flex justify-between items-center">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Historial de Citas</h2>
+        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
+            Historial de Citas
+        </h2>
         <div class="flex justify-end mb-4">
             <div class="relative">
                 <!-- Icono de búsqueda -->
-                <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 w-5 h-5"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
@@ -12,14 +14,18 @@
 
                 <!-- Campo de búsqueda -->
                 <input type="text" placeholder="Buscar cita..." [(ngModel)]="searchTerm" (input)="onSearchChange()"
-                    class="pl-10 pr-4 border border-gray-300 rounded px-3 py-2 
-                  focus:outline-none focus:ring focus:border-blue-300">
+                    class="pl-10 pr-4 border border-gray-300 dark:border-gray-600 rounded px-3 py-2 
+                 bg-white dark:bg-gray-800 
+                 text-gray-700 dark:text-gray-200
+                 placeholder-gray-400 dark:placeholder-gray-500
+                 focus:outline-none focus:ring focus:border-blue-300" />
             </div>
         </div>
     </div>
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white rounded-lg shadow">
-            <thead class="bg-gray-100 text-gray-600 uppercase text-sm">
+
+    <div class="overflow-x-auto rounded-md">
+        <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow transition-colors">
+            <thead class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 uppercase text-sm">
                 <tr>
                     <th class="px-4 py-2 text-left">Doctor</th>
                     <th class="px-4 py-2 text-left">Fecha</th>
@@ -31,30 +37,32 @@
             </thead>
 
             <tbody *ngIf="paginatedAppointments.length > 0; else noCitas"
-                class="divide-y divide-gray-200 text-gray-700">
-
-                <tr *ngFor="let appt of paginatedAppointments" class="hover:bg-gray-50 transition">
+                class="divide-y divide-gray-200 dark:divide-gray-700 text-gray-700 dark:text-gray-200">
+                <tr *ngFor="let appt of paginatedAppointments"
+                    class="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
                     <td class="px-4 py-2">{{ appt.doctor }}</td>
                     <td class="px-4 py-2">{{ appt.appointmentDate | date:'shortDate' }}</td>
                     <td class="px-4 py-2">{{ appt.appointmentDate | date:'shortTime' }}</td>
                     <td class="px-4 py-2">
                         <span class="px-2 py-1 text-xs font-semibold rounded-full" [ngClass]="{
-                    'bg-green-100 text-green-700': appt.status==='Completada',
-                    'bg-yellow-100 text-yellow-700': appt.status==='Pendiente',
-                    'bg-red-100 text-red-700': appt.status==='Cancelada'
-                  }">
+                'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300': appt.status==='Completada',
+                'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300': appt.status==='Pendiente',
+                'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300': appt.status==='Cancelada'
+              }">
                             {{ appt.status }}
                         </span>
                     </td>
                     <td class="px-4 py-2">{{ appt.notes }}</td>
                     <td class="px-4 py-2 flex gap-2">
                         <ng-container *ngIf="appt.status === 'Pendiente'">
-                            <button class="px-3 py-1 cursor-pointer text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600"
+                            <button
+                                class="px-3 py-1 cursor-pointer text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600"
                                 (click)="openRescheduleModal(appt)">
                                 Reprogramar
                             </button>
 
-                            <button class="px-3 py-1 cursor-pointer text-sm bg-red-500 text-white rounded hover:bg-red-600"
+                            <button
+                                class="px-3 py-1 cursor-pointer text-sm bg-red-500 text-white rounded hover:bg-red-600"
                                 (click)="openCancelModal(appt)">
                                 Cancelar
                             </button>
@@ -65,7 +73,7 @@
 
             <ng-template #noCitas>
                 <tr>
-                    <td colspan="6" class="text-center py-4 text-gray-500 italic">
+                    <td colspan="6" class="text-center py-4 text-gray-500 dark:text-gray-400 italic">
                         No tiene citas registradas.
                     </td>
                 </tr>
@@ -76,36 +84,30 @@
     <!-- Paginación -->
     <div class="flex justify-center items-center gap-2 mt-8">
         <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1"
-            class="flex items-center px-3 py-1 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50">
-            <!-- Icono flecha izquierda -->
+            class="flex items-center px-3 py-1 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-400 dark:hover:bg-gray-500 disabled:opacity-50">
             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
             Anterior
         </button>
 
-        <span class="px-2 py-1 text-gray-700">Página {{ currentPage }} de {{ totalPages }}</span>
+        <span class="px-2 py-1 text-gray-700 dark:text-gray-300">
+            Página {{ currentPage }} de {{ totalPages }}
+        </span>
 
         <button (click)="setPage(currentPage + 1)" [disabled]="currentPage === totalPages"
-            class="flex items-center px-3 py-1 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50">
+            class="flex items-center px-3 py-1 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-400 dark:hover:bg-gray-500 disabled:opacity-50">
             Siguiente
-            <!-- Icono flecha derecha -->
             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>
         </button>
     </div>
 
-    <!-- Modal de reprogramación -->
+    <!-- Modales -->
     <app-reschedule-appointment *ngIf="showRescheduleModal" [appointment]="selectedAppointment"
-        (save)="onRescheduleSave($event)" (close)="showRescheduleModal = false">
-    </app-reschedule-appointment>
+        (save)="onRescheduleSave($event)" (close)="showRescheduleModal = false"></app-reschedule-appointment>
 
-    <!-- Modal de confirmación de cancelación -->
-    <app-cancel-appointment-modal 
-    *ngIf="showCancelModal" 
-    (confirm)="onConfirmCancel()"
-        (cancel)="showCancelModal = false">
-    </app-cancel-appointment-modal>
-
+    <app-cancel-appointment-modal *ngIf="showCancelModal" (confirm)="onConfirmCancel()"
+        (cancel)="showCancelModal = false"></app-cancel-appointment-modal>
 </div>

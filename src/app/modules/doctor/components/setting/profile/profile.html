@@ -1,0 +1,93 @@
+<div
+    class="max-w-4xl mx-auto mt-4 p-6 bg-gray-100 dark:bg-gray-900 rounded-2xl shadow-xl transition-colors duration-300">
+
+    <h2 class="text-3xl font-bold mb-2 text-center text-gray-800 dark:text-gray-100">
+        Perfil de Usuario
+    </h2>
+
+    <!-- Loader -->
+    <div *ngIf="loading" class="text-center py-8 text-gray-500 dark:text-gray-400 text-lg">
+        Cargando perfil...
+    </div>
+
+    <!-- Botón de editar -->
+    <div class="flex justify-end mb-4" *ngIf="!editing && !loading">
+        <button (click)="enableEdit()"
+            class="bg-yellow-500 cursor-pointer hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold shadow-md transition-all">
+            Editar perfil
+        </button>
+    </div>
+
+    <form [formGroup]="profileForm" (ngSubmit)="updateUser()" *ngIf="!loading"
+        class="space-y-8 bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 md:p-8 transition-colors">
+
+        <!-- Información básica -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="relative">
+                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Nombre completo</label>
+
+                <!-- Modo lectura -->
+                <input *ngIf="!editing" type="text"
+                    [value]="profileForm.value.firstName + ' ' + profileForm.value.lastName" readonly class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 
+                              bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 cursor-not-allowed" />
+
+                <!-- Modo edición -->
+                <div *ngIf="editing" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" formControlName="firstName" placeholder="Nombre" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 
+                                  focus:outline-none focus:ring-2 focus:ring-blue-400 
+                                  bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" />
+                    <input type="text" formControlName="lastName" placeholder="Apellido" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 
+                                  focus:outline-none focus:ring-2 focus:ring-blue-400 
+                                  bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" />
+                </div>
+            </div>
+
+            <div class="relative">
+                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Correo electrónico</label>
+                <input type="email" formControlName="email" [readonly]="!editing" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 
+                              focus:outline-none focus:ring-2 focus:ring-blue-400 
+                              bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+                              {{ !editing ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed' : '' }}" />
+            </div>
+
+            <div class="relative">
+                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Teléfono</label>
+                <input type="text" formControlName="phoneNumber" [readonly]="!editing" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 
+                              focus:outline-none focus:ring-2 focus:ring-blue-400 
+                              bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+                              {{ !editing ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed' : '' }}" />
+            </div>
+
+            <div class="relative">
+                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Especialidad</label>
+                <input type="text" formControlName="specialty" [readonly]="!editing" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 
+                              focus:outline-none focus:ring-2 focus:ring-blue-400 
+                              bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+                              {{ !editing ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed' : '' }}" />
+            </div>
+        </div>
+
+        <!-- Bio -->
+        <div>
+            <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Biografía</label>
+            <textarea formControlName="bio" [readonly]="!editing" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 
+                             focus:outline-none focus:ring-2 focus:ring-blue-400 
+                             bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+                             {{ !editing ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed' : '' }}"
+                rows="4"></textarea>
+        </div>
+
+        <!-- Botones -->
+        <div class="flex flex-col md:flex-row gap-4 justify-center mt-4">
+            <button *ngIf="editing" type="submit" [disabled]="profileForm.invalid || loading"
+                class="flex-1 px-6 py-3 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-md transition-all disabled:opacity-50">
+                Guardar cambios
+            </button>
+            <button *ngIf="editing" type="button" (click)="cancelEdit()"
+                class="flex-1 px-6 py-3 cursor-pointer bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 font-semibold transition-all">
+                Cancelar
+            </button>
+        </div>
+
+    </form>
+</div>

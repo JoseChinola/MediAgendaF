@@ -116,6 +116,46 @@ export class Sidebar {
           ]
         }
       ]
+    } else if (userRole === 'Doctor'){
+      this.menu = [
+        {
+          label: 'Home',
+          icon: 'fas fa-home',
+          items: [
+            {
+              label: 'Dashboard',
+              icon: 'fas fa-tachometer-alt',
+              to: '/app/doctor'
+            },
+            {
+              label: 'Pacientes',
+              icon: 'fas fa-user-md',
+              to: '/app/doctor/patients'
+            },
+            {
+              label: 'Citas',
+              icon: 'fas fa-calendar-alt',
+              to: '/app/doctor/appointments'
+            }
+          ]
+        },
+        {
+          label: 'Configuracion',
+          icon: 'fas fa-cog',
+          items: [
+            {
+              label: 'Perfil',
+              icon: 'fas fa-user',
+              to: '/app/doctor/setting/profile'
+            },
+            {
+              label: 'Seguridad',
+              icon: 'fas fa-lock',
+              to: '/app/doctor/setting/security'
+            }
+          ]
+        }
+      ]
     }
   }
 

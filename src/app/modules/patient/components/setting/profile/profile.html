@@ -1,61 +1,75 @@
-<div class="max-w-4xl mx-auto p-6 bg-gray-50 rounded-lg shadow-lg">
-    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Perfil de Usuario</h2>
-    
+<div class="max-w-4xl mx-auto mt-3 p-6 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md shadow-gray-950 dark:shadow-gray-200">
+    <h2 class="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100">
+        Perfil de Usuario
+    </h2>
+
     <!-- Loader -->
-    <div *ngIf="loading" class="text-center py-8 text-gray-500 text-lg">
+    <div *ngIf="loading" class="text-center py-8 text-gray-500 dark:text-gray-400 text-lg">
         Cargando perfil...
     </div>
 
     <!-- Botón de editar -->
     <div class="flex justify-end mb-4" *ngIf="!editing && !loading">
         <button (click)="enableEdit()"
-            class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold">
+            class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2  cursor-pointer rounded-lg font-semibold">
             Editar perfil
         </button>
     </div>
 
-    <form [formGroup]="profileForm" (ngSubmit)="updateUser()" *ngIf="!loading" class="space-y-6">
+    <form [formGroup]="profileForm" (ngSubmit)="updateUser()" *ngIf="!loading" class="space-y-6 border border-gray-200 dark:border-gray-700 px-2 py-2 rounded-xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Nombre -->
             <div class="relative">
-                <label class="block text-gray-700 font-semibold mb-1">Nombre</label>
-                <input type="text" formControlName="firstName" [readonly]="!editing" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 
-                  {{ !editing ? 'bg-gray-100 cursor-not-allowed' : '' }}" />
+                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Nombre</label>
+                <input type="text" formControlName="firstName" [readonly]="!editing" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 
+                           focus:outline-none focus:ring-2 focus:ring-blue-400 
+                           bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+                           {{ !editing ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed' : '' }}" />
             </div>
 
             <!-- Apellido -->
             <div class="relative">
-                <label class="block text-gray-700 font-semibold mb-1">Apellido</label>
-                <input type="text" formControlName="lastName" [readonly]="!editing" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 
-                  {{ !editing ? 'bg-gray-100 cursor-not-allowed' : '' }}" />
+                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Apellido</label>
+                <input type="text" formControlName="lastName" [readonly]="!editing" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 
+                           focus:outline-none focus:ring-2 focus:ring-blue-400 
+                           bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+                           {{ !editing ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed' : '' }}" />
             </div>
 
             <!-- Email -->
             <div class="relative md:col-span-2">
-                <label class="block text-gray-700 font-semibold mb-1">Correo electrónico</label>
-                <input type="email" formControlName="email" [readonly]="!editing" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 
-                  {{ !editing ? 'bg-gray-100 cursor-not-allowed' : '' }}" />
+                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Correo electrónico</label>
+                <input type="email" formControlName="email" [readonly]="!editing" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 
+                           focus:outline-none focus:ring-2 focus:ring-blue-400 
+                           bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+                           {{ !editing ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed' : '' }}" />
             </div>
 
             <!-- Teléfono -->
             <div class="relative">
-                <label class="block text-gray-700 font-semibold mb-1">Teléfono</label>
-                <input type="text" formControlName="phoneNumber" [readonly]="!editing" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 
-                  {{ !editing ? 'bg-gray-100 cursor-not-allowed' : '' }}" />
+                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Teléfono</label>
+                <input type="text" formControlName="phoneNumber" [readonly]="!editing" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 
+                           focus:outline-none focus:ring-2 focus:ring-blue-400 
+                           bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+                           {{ !editing ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed' : '' }}" />
             </div>
 
             <!-- Fecha de nacimiento -->
             <div class="relative">
-                <label class="block text-gray-700 font-semibold mb-1">Fecha de nacimiento</label>
-                <input type="date" formControlName="birthDate" [readonly]="!editing" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 
-                  {{ !editing ? 'bg-gray-100 cursor-not-allowed' : '' }}" />
+                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Fecha de nacimiento</label>
+                <input type="date" formControlName="birthDate" [readonly]="!editing" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 
+                           focus:outline-none focus:ring-2 focus:ring-blue-400 
+                           bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+                           {{ !editing ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed' : '' }}" />
             </div>
 
             <!-- Dirección -->
             <div class="relative md:col-span-2">
-                <label class="block text-gray-700 font-semibold mb-1">Dirección</label>
-                <input type="text" formControlName="address" [readonly]="!editing" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 
-                  {{ !editing ? 'bg-gray-100 cursor-not-allowed' : '' }}" />
+                <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Dirección</label>
+                <input type="text" formControlName="address" [readonly]="!editing" class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 
+                           focus:outline-none focus:ring-2 focus:ring-blue-400 
+                           bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+                           {{ !editing ? 'bg-gray-100 dark:bg-gray-700 cursor-not-allowed' : '' }}" />
             </div>
         </div>
 
@@ -65,6 +79,7 @@
                 class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md disabled:opacity-50">
                 Guardar cambios
             </button>
+            
         </div>
     </form>
 </div>

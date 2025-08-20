@@ -1,0 +1,111 @@
+<div class="p-6 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center md:text-left">
+        Detalle de la cita
+    </h1>
+
+    <div
+        class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl max-w-4xl mx-auto p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Sección Paciente -->
+        <div class="space-y-4">
+            <h2
+                class="text-2xl font-semibold text-gray-800 dark:text-gray-100 border-b border-gray-200 dark:border-gray-700 pb-2 mb-2">
+                Paciente</h2>
+            <div class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5.121 17.804A4 4 0 0110 15h4a4 4 0 014.879 2.804M15 11a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <p class="text-gray-700 dark:text-gray-300"><span class="font-semibold">Nombre:</span> {{
+                    appointment.patientName }}</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 12h.01M8 12h.01M12 12h.01M12 16h.01M12 8h.01M20 12a8 8 0 11-16 0 8 8 0 0116 0z" />
+                </svg>
+                <p class="text-gray-700 dark:text-gray-300"><span class="font-semibold">Email:</span> {{
+                    appointment.email }}</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H5a2 2 0 00-2 2v5a2 2 0 002 2z" />
+                </svg>
+                <p class="text-gray-700 dark:text-gray-300"><span class="font-semibold">Teléfono:</span> {{
+                    appointment.phone }}</p>
+            </div>
+        </div>
+
+        <!-- Sección Cita -->
+        <div class="space-y-4">
+            <h2
+                class="text-2xl font-semibold text-gray-800 dark:text-gray-100 border-b border-gray-200 dark:border-gray-700 pb-2 mb-2">
+                Detalles de la cita</h2>
+            <div class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7V3M16 7V3M3 11h18M5 11v10a2 2 0 002 2h10a2 2 0 002-2V11" />
+                </svg>
+                <p class="text-gray-700 dark:text-gray-300"><span class="font-semibold">Fecha y hora:</span> {{
+                    appointment.date | date:'full' }}</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-500" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2z" />
+                </svg>
+                <p class="text-gray-700 dark:text-gray-300"><span class="font-semibold">Tipo de consulta:</span> {{
+                    appointment.type }}</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <p>
+                    <span class="font-semibold">Estado:</span>
+                    <span [ngClass]="{
+            'bg-green-100 text-green-800 dark:bg-green-700 dark:text-green-100': appointment.status==='completed',
+            'bg-yellow-100 text-yellow-800 dark:bg-yellow-700 dark:text-yellow-100': appointment.status==='pending'
+          }" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
+                        {{ appointment.status | titlecase }}
+                    </span>
+                </p>
+            </div>
+
+            <!-- Notas -->
+            <div class="mt-4">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">Notas del doctor</h3>
+                <p class="text-gray-700 dark:text-gray-300" *ngIf="appointment.notes; else noNotes">{{ appointment.notes
+                    }}</p>
+                <ng-template #noNotes><span class="text-gray-500 dark:text-gray-400">No hay notas
+                        registradas</span></ng-template>
+            </div>
+
+            <!-- Acciones -->
+            <div class="flex flex-col md:flex-row gap-2 mt-6">
+                <button *ngIf="appointment.status==='pending'" (click)="markCompleted()" class="
+                    flex-1 text-md bg-green-500 py-2 px-1 cursor-pointer
+                    text-white rounded-lg hover:bg-green-600 
+                    transition-colors font-semibold">
+                    Marcar como completada
+                </button>
+                <button (click)="goBack()" class="flex-1 cursor-pointer
+                bg-gray-300 dark:bg-gray-700 text-gray-800                 
+                    dark:text-gray-100 rounded-lg hover:bg-gray-400
+                     dark:hover:bg-gray-600 
+                    transition-colors font-semibold">
+                    Volver
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>

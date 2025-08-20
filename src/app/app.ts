@@ -1,5 +1,6 @@
 import { Component, Renderer2 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ThemeService } from './core/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +10,4 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   protected title = 'MediAgendaF';
-  darkMode = false;
-
-  constructor(private renderer: Renderer2) { }
-
-  toggleDarkMode() {
-    this.darkMode = !this.darkMode;
-
-    if (this.darkMode) {
-      this.renderer.addClass(document.documentElement, 'dark');
-    } else {
-      this.renderer.removeClass(document.documentElement, 'dark');
-    }
-  }
 }

@@ -2,4 +2,6 @@
 @import 'ngx-toastr/toastr';
 @import "tailwindcss";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant dark (&:where(.dark, .dark *));
+
+

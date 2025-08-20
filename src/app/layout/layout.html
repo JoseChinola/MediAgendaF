@@ -1,14 +1,15 @@
-<div class="flex h-screen bg-gray-100">
-    <!--Sidebar-->
+<div class="flex h-screen bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
+    <!-- Sidebar -->
     <app-sidebar></app-sidebar>
 
-    <!-- Main content-->
+    <!-- Main content -->
     <div class="flex flex-col flex-grow overflow-auto">
         <!-- Header -->
         <app-header></app-header>
-        <!--Content-->
-        <main class="flex-grow p-6 overflow-auto bg-gray-50">           
-            <router-outlet />
-        </main>        
+
+        <!-- Content -->
+        <main class="flex-grow px-2 rounded overflow-auto bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+            <router-outlet></router-outlet>
+        </main>
     </div>
 </div>

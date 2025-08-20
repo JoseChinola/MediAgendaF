@@ -35,6 +35,12 @@ export const routes: Routes = [
                 loadChildren: () => import('./modules/patient/patient.module').then(m => m.PatientModule),
                 canActivate: [authGuard],
                 data: { breadcrumb: 'Inicio', roles: ['Patient'] }
+            },
+            {
+                path: "doctor",
+                loadChildren: () => import('./modules/doctor/doctor.module').then(m => m.DoctorModule),
+                canActivate: [authGuard],
+                data: { breadcrumb: 'Inicio', roles: ['Doctor'] }
             }
 
         ]

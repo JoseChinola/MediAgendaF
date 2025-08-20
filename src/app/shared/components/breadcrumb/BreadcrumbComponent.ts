@@ -8,8 +8,7 @@ import { BreadcrumbService } from '../../../core/services/breadcrumb.service';
 @Component({
   selector: 'app-breadcrumb',
   imports: [CommonModule, RouterLink],
-  templateUrl: './BreadcrumbComponent.html',
-  styleUrl: './BreadcrumbComponent.css'
+  templateUrl: './BreadcrumbComponent.html'
 })
 export class BreadcrumbComponent implements OnInit {
   breadcrumbs: Breadcrumb[] = [];

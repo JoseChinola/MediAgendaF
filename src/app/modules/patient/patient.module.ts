@@ -11,7 +11,6 @@ import { PatientDashboard } from './components/patient-dashboard/patient-dashboa
         CommonModule,
         PatientRoutingModule,
         PatientDashboard
-
     ]
 })
 
