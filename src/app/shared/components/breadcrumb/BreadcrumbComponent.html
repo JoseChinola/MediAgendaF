@@ -5,14 +5,15 @@
                 <a [routerLink]="breadcrumb.url" class="hover:text-blue-600 whitespace-nowrap">
                     {{ breadcrumb.label }}
                 </a>
-                <svg class="w-4 h-4 text-gray-700 dark:text-gray-400 mx-2 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2"
-                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <svg class="w-4 h-4 text-gray-700 dark:text-gray-400 mx-2 flex-shrink-0" fill="none"
+                    stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true" focusable="false">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
                 </svg>
             </ng-container>
 
             <ng-container *ngIf="last">
-                <span class="text-gray-800 font-semibold whitespace-nowrap" aria-current="page">
+                <span class="text-gray-700 dark:text-gray-400 font-semibold whitespace-nowrap" aria-current="page">
                     {{ breadcrumb.label }}
                 </span>
             </ng-container>

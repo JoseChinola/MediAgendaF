@@ -1,4 +1,5 @@
-<div class="max-w-4xl mx-auto mt-3 p-6 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md shadow-gray-950 dark:shadow-gray-200">
+<div
+    class="max-w-4xl mx-auto max-h-screen mt-3 p-6 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-md shadow-gray-950 dark:shadow-gray-200">
     <h2 class="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100">
         Perfil de Usuario
     </h2>
@@ -16,7 +17,8 @@
         </button>
     </div>
 
-    <form [formGroup]="profileForm" (ngSubmit)="updateUser()" *ngIf="!loading" class="space-y-6 border border-gray-200 dark:border-gray-700 px-2 py-2 rounded-xl">
+    <form [formGroup]="profileForm" (ngSubmit)="updateUser()" *ngIf="!loading"
+        class="space-y-6 border border-gray-200 dark:border-gray-700 px-2 py-2 rounded-xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Nombre -->
             <div class="relative">
@@ -74,12 +76,19 @@
         </div>
 
         <!-- Botón Guardar solo si estamos editando -->
-        <div class="flex justify-center" *ngIf="editing">
-            <button type="submit" [disabled]="profileForm.invalid || loading"
-                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md disabled:opacity-50">
-                Guardar cambios
-            </button>
-            
+        <div class="flex justify-between items-center w-full" *ngIf="editing">
+            <!-- Botones -->
+            <div class="w-full flex flex-col md:flex-row gap-4 justify-center">
+                <button *ngIf="editing" type="submit" [disabled]="profileForm.invalid || loading"
+                    class="flex-1 px-6 py-3 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-md transition-all disabled:opacity-50">
+                    Guardar cambios
+                </button>
+                <button *ngIf="editing" type="button" (click)="cancelEdit()"
+                    class="w-full flex-1 px-6 py-3 cursor-pointer bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 font-semibold transition-all">
+                    Cancelar
+                </button>
+            </div>
+
         </div>
     </form>
 </div>
